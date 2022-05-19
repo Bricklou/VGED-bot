@@ -32,3 +32,7 @@ target("vged-bot")
 
     add_packages("dpp", "spdlog", "fmt", "nlohmann_json", "json-schema-validator")
 
+    if is_mode("debug") then
+        add_defines("SPDLOG_ACTIVE_LEVEL=SPDLOG_LEVEL_TRACE")
+    end
+
