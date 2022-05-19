@@ -1,32 +1,11 @@
-# Prerequisites
-*.d
+# XMake and build
+/.xmake
+/build
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+# IDE
+/.idea
+/.vs
+/.vscode
 
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+# System
+.DS_Store
