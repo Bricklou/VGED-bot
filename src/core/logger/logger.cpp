@@ -9,20 +9,12 @@
 #include <spdlog/async.h>
 #include <spdlog/async_logger.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
-#include <spdlog/sinks/systemd_sink.h>
 #include <spdlog/spdlog.h>
 
-void logger::create_logger(const std::string &name, bool enable_systemdlog) {
-  std::vector<spdlog::sink_ptr> sinks{};
+void logger::create_logger(const std::string &name) {
 
   // Create console logger sink
   auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
-  sinks.push_back(console_sink);
-
-  if (enable_systemdlog) {
-    auto systemd_sink = std::make_shared<spdlog::sinks::systemd_sink_mt>();
-    sinks.push_back(systemd_sink);
-  }
 
   // Create a new logger
   spdlog::init_thread_pool(1024, 1);
@@ -34,8 +26,9 @@ void logger::create_logger(const std::string &name, bool enable_systemdlog) {
   logger->set_level(spdlog::level::trace);
 
   // Set the pattern for the logger (like the default one but with more colors)
-  logger->set_pattern("\u001b[90m[%Y-%m-%d %T.%e] [thread %t]\u001b[39m "
-                      "[\u001b[33m%n\u001b[39m] [%^%=9l%$] %v");
+  logger->set_pattern(
+      "\u001b[90m[%Y-%m-%d %T.%e] [thread %t]\u001b[39m "
+      "[\u001b[33m%n\u001b[39m] [%^%l%$] \u001b[90m[%@]\u001b[39m %v");
 
   // Set our new logger as the default one
   spdlog::set_default_logger(logger);

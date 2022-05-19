@@ -6,5 +6,5 @@
 #include <spdlog/spdlog.h>
 
 namespace logger {
-  void create_logger(const std::string &name, bool enable_systemdlog = false);
+  void create_logger(const std::string &name);
 }
